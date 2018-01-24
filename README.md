@@ -11,3 +11,5 @@ To use an android simulator you may need to download & set-up Android Studio the
 
 To run the unit test:
 * ```TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --port 2020```
+
+[Demo Video](./demo.mov)
