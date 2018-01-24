@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 
 import { Tasks } from '../api/tasks';
 
@@ -6,20 +7,18 @@ import { Tasks } from '../api/tasks';
 export default class Task extends Component {
   toggleChecked() {
       // set the checked property to the opposite of its current value
-      Tasks.update(this.props.task._id, {
-        $set: { checked: !this.props.task.checked },
-      });
-  }
+      Meteor.call('tasks.setChecked', this.props.task._id, !this.props.task.checked);
+      }
 
   deleteThisTask() {
-    Tasks.remove(this.props.task._id);
+    Meteor.call('tasks.remove', this.props.task._id);
   }
 
   render() {
     // give tasks a different className when they are checked off
     // this allows us to use CSS to style them
     const taskClassName = this.props.task.checked ? 'checked' : '';
-    
+
     console.log(this.props.task.username);
 
     return (
